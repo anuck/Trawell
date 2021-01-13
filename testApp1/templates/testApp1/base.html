@@ -1,0 +1,112 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<style>
+    .body_right  ul a{
+   margin: 10px;
+   text-decoration: none;
+   
+ }
+
+ .body_right  ul li{
+    border: 1px solid #ffffff linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background : rgb(255, 255, 255);
+        padding: 10px 10px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: .4s;
+        color: black; 
+        size: 20px;
+ }
+
+ .body_right  ul li:hover{
+    color:white;
+        border: 1px solid black linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background-color: black;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+ }
+
+</style>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'testApp1/main.css'%}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <title>
+        Travel Agency Home
+    </title>
+</head>
+
+<body class="bg" style="background-image: url({%static 'testApp1/images/background_img.jpg'%})">
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4 web_logo" href="{% url 'travel-home'%}">
+                    <img src="{%static 'testApp1/images/logo.png'%}" height="60px" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+                    aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="{% url 'travel-home'%}">Home</a>
+                        <!-- <a class="nav-item nav-link" href="{% url 'travel-home'%}">About</a> -->
+                        <a class="nav-item nav-link" href="{% url 'nearby_location'%}">Nearby</a>
+                        <a class="nav-item nav-link" href="{% url 'deals'%}">Deals</a>
+                    </div>
+                    <!-- Navbar Right Side -->
+                    <div class="navbar-nav">
+                        {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="content-section body_right">
+                    <h3>What's New ?</h3>
+
+                    <p class='text-muted'><span>You can get latest updates on our website here.</span>
+                    <ul class="list-group">
+                        <a  href="{% url 'deals' %}">
+                            <li class="list-group-item list-group-item-light">New Offers</li>
+                        </a>
+                        <a href="/distance">
+                            <li class=" list-group-item list-group-item-light">Calculate Distance to Your Favorite
+                                Destination</li>
+                        </a>
+                    </ul>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js""></script>
+    <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> </script> </body> </html>

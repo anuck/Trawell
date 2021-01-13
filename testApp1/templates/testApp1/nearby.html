@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% extends "testApp1/base.html" %}
+{% block content %}
+
+<style>
+     
+    .card-body, .content-section{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        background: #ffffff;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        box-shadow: 0 0 20px 0 rgba(72, 92, 116, 0.7);
+        color: white;
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'location location'
+                             'radius radius'
+                             'keywords keywords'
+                             'button button';
+        grid-row-gap: 20px;
+    }
+
+    input {
+        border-radius: 10px;
+        border: black;
+    }
+
+    select {
+        border-radius: 10px;
+        border: black;
+    }
+
+    .search-btn {
+        grid-area: button;
+        border: 1px solid #ffffff linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background : rgb(255, 255, 255);
+        padding: 10px 10px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: .4s;
+        color: black; 
+        size: 20px;
+    }
+
+    .search-btn:hover{
+        color:white;
+        border: 1px solid black linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background-color: black;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    }
+    
+
+    .content-section {
+        border: none
+    }
+
+    /* .content-section img {
+        color: white;
+    } */
+
+     /* .media-body {
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr;
+         grid-template-rows: row;
+     } */
+</style>
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="post">{% csrf_token %}
+                <label>Location</label>
+                <input type="text" name = "location" required>
+                <label>Radius</label>
+                <select name = "radius">
+                    <option value = 500>500m</option>
+                    <option value = 1000>1km</option>
+                    <option value = 1500>1.5km</option>
+                    <option value = 2000>2km</option>
+                    <option value = 4000>4km</option>
+                    <option value = 6000>6km</option>
+                    <option value = 8000>8km</option>
+                    <option value = 10000>10km</option>
+                    <option value = 15000>15km</option>
+                    <option value = 20000>20km</option>
+                    <option value = 40000>40km</option>
+                </select>
+                <label>Keywords</label>
+                <input type="text" name = "keywords">
+                <button class="btn search-btn" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% if results %}
+{% for result in results %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <img src="{{ result.icon }}" height="40px" width="40px"><h4>{{ result.name }}</h4><p><span>{{result.business_status}}</span></p>
+            <p><span>Rating: </span>{{ result.rating }}</p>
+            <p><span>User Ratings: </span>{{ result.user_ratings_total }}</p>
+            <p><span>Address: </span>{{ result.vicinity }}</p>
+        </div>
+    </div>
+</article>
+{% endfor %}
+{% endif %}
+{% endblock content %}

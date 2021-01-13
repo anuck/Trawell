@@ -1,0 +1,71 @@
+{% extends "testApp1/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- {% load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'Users/main.css'%}"> -->
+
+<style>
+    .login-body{
+        background: #a98787; 
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+        color: white;
+        border: none;
+    }
+
+    .login-btn {
+        border: 1px solid #ffffff linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background : rgb(255, 255, 255);
+        padding: 10px 10px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: .4s;
+        color: black; 
+        size: 20px;
+    }
+
+    .login-btn:hover{
+        color:white;
+        border: 1px solid black linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background-color: black;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    }
+
+    .forgot-password{
+        color: white; text-decoration: none; height: 20px;
+    }
+
+    .need-an-account{
+        color: white;
+    }
+
+    .need-an-account a{
+        color: white; text-decoration: none; 
+        background: rgba(255, 255, 255, 0.212);
+    }
+
+</style>
+<div class="content-section login-body">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Login</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn login-btn" type="submit">Login</button>
+        </div>
+    </form>
+    <div class="border-top pt-3" >
+        <small class="text-muted">
+            <a class="ml-2 forgot-password" href="{% url 'reset_password' %}">Forgot Password?</a>
+        </small>
+    </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <p class="need-an-account"> Need an account? <a class="ml-2" href="{% url 'register' %}" 
+                                                            >Sign Up Now</a></p>
+        </small>
+    </div>
+</div>
+{% endblock content%}

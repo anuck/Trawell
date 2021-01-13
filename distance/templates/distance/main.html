@@ -1,0 +1,79 @@
+{% extends "testApp1/base.html" %}
+{% load crispy_forms_tags%}
+{% block content %}
+
+<style>
+    #exampleModalLabel {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color: black;
+    }
+
+    .btn {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        border: 1px solid #ffffff linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        background: rgb(255, 255, 255);
+        padding: 10px 20px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: .4s;
+        color: black;
+    }
+
+    .btn:hover {
+        color: white;
+        border: 1px solid black linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        background-color: black;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    }
+
+    .modal-body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        background: #ffffff;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        box-shadow: 0 0 20px 0 rgba(72, 92, 116, 0.7);
+        border: none;
+        color: white;
+    }
+</style>
+
+<!-- Modal -->
+<div class="models">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Distance to {{ destination }} is :</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ distance }} Km
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ map|safe }}
+
+    <form action="" method="POST" autocomplete="off">
+        {% csrf_token %}
+        {{form|crispy}}
+        {% if error is not None %}
+        <span id="error-coupon" style="color:red">{{ error }}</span><br>
+        {% endif%}
+        <button type="submit" class="btn ">Confirm </button>
+    </form>
+    <br>
+
+    {% if request.POST and distance is not None %}
+    <script>
+        $(window).on('load', function () {
+            $('#exampleModal').modal('show')
+        })
+    </script>
+    {% endif%}>
+
+</div>
+
+{% endblock content %}

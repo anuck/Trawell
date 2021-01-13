@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% extends "testApp1/base.html" %}
+{% block content %}
+
+<style>
+    .grid-container{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        background: #ffffff;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        color: white;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 'product product'
+                             'coupon place-order'
+                                ;
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
+        border: none;
+    }
+
+    .media-body {
+        grid-area: product;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-columns: auto;
+        grid-template-areas: 'country country'
+                             'package payment'
+                             ;
+    }
+
+    .country {
+        grid-area: country;
+        padding: 10px;
+    }
+
+    .country a {
+        color: white;
+        text-decoration: none;
+        font-size: 30px;
+        transition: .3 ease;
+    }
+
+    .country-link:hover{
+        color: whitesmoke;
+        cursor: pointer;
+        transition: 0.8s;
+        
+    }
+
+    .package {
+        grid-area: package;
+        color: white;
+    }
+
+    .package a{
+        color: white;
+    }
+
+    .payment {
+        grid-area: payment;
+    }
+
+    .payment a {
+        color: white;
+    }
+
+    .coupon-form{
+        grid-area: coupon;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 10px;
+    }
+
+    .place-order{
+        grid-area: place-order;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 10px;
+    }
+
+    .coupon-form .btn, .place-order .btn {
+        border: 1px solid #ffffff;
+        background : white;
+        padding: 10px 20px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: 0.8s;
+        color: black;
+    }
+
+    .coupon-form .btn:hover, .place-order .btn:hover{
+        color:white;
+        border: 1px solid black;
+        background-color: black;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    }
+
+
+</style>
+
+<article class="media content-section grid-container">
+    <div class="media-body">
+        <div class="article-metadata country">
+            <a class="mr-2" href="#" class="country-link">{{values.country}}</a>
+            <!-- <small class="text-muted">{{ values.date_posted }}</small> -->
+        </div>
+        <div class="package">
+            <h2><a class="article-title" href="#">{{values.name}}</a></h2>
+            <p class="article-content">Package : {{values.package}} with the rating {{values.rating}}  </p>
+        </div>
+        
+        <div class="payment">
+            <h3><a class="article-title" href="#">Details</a></h3>
+            <p class="article-content1"> Base Price {{values.cost}}<br>
+                Discount Percentage : {{discount}}<br>
+                Discount Applied: {{discountAmount}}<br>
+
+                Total amount before taxes :{{price}} <br><br>
+                Tax Amount(15%):{{tax}} <br>
+                Total amount after taxes :{{total}}
+            </p>
+        </div>
+        
+    </div>
+    <form method="POST" action="/checkout/?destination_id={{ values.id }}">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="Coupon" required>
+
+            {% if error is not None %}
+            <br>
+            <span id="error-coupon" style="color:red">{{ error }}</span>
+            {% endif%}
+
+            <button class="btn btn-outline-info" type="submit">Apply Coupon</button>
+
+        </div>
+    </form>
+
+    <form method="POST" action="/confirm" class="">
+        {% csrf_token %}
+        <div class="form-group place-order">
+            <input type="email" name="email" placeholder="Email" required>
+            <button class="btn " type="submit">Place Order</button>
+
+        </div>
+    
+    </form>
+
+</article>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends "testApp1/base.html" %}
+{% block content %}
+{% load static%}
+<div class="logout_body" style="background: #fff; 
+                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+                                height: 200px;
+                                padding: 20px;">
+    <h2>
+        <span style="color: white; 
+                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+            You have been logged out
+        </span></h2>
+
+    <div class="border-top pt-3">
+        <large class="text-muted">
+            <a href="{% url 'login' %}" style="color:white; 
+                                               font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                               font-size: larger;">
+                Log In Again
+            </a>
+        </large>
+    </div>
+</div>
+{% endblock content%}

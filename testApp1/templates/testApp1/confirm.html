@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "testApp1/base.html" %}
+{% block content %}
+
+<style>
+    h1,p{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color: white;
+    }
+
+    .order-confirmed {
+        background: #ffffff;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        box-shadow: 0 0 20px 0 rgba(72, 92, 116, 0.7);
+        padding: 30px;
+    }
+
+</style>
+
+<div class="order-confirmed">
+    <h1>ORDER CONFIRMED</h1>
+    <p>Your itinerary has been sent to your email.</p>
+</div>
+
+ 
+{% endblock content %}
+<!-- 
+<!DOCTYPE html>
+{​​​​​% extends "testApp1/base.html" %}​​​​​
+{​​​​​% block content %}​​​​​
+<div class="logout_body" style="background: #fff;
+background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+height: 200px;
+padding: 20px;">
+<h1>
+<span style="color: white;
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+Order Confirmed
+</span></h1>
+<div class="border-top pt-3">
+<large class="text-muted">
+<a href="{​​​​​% url 'login' %}​​​​​" style="color:white;
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: larger;">
+Your itinerary has been sent to your email.
+</a>
+</large>
+</div>
+</div>
+{​​​​​% endblock content %}​​​​​ -->

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% extends "testApp1/base.html" %}
+{% block content %}
+{% load static%}
+
+<style>
+    .content-section{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        background: #ffffff;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        box-shadow: 0 0 20px 0 rgba(72, 92, 116, 0.7);
+        border: none;
+    }
+
+    .media-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 'country country'
+                             'img name'
+                             'button button';
+        grid-column-gap: 10px;
+        grid-row-gap: 20px;
+    }
+
+    .article-metadata{
+        grid-area: country;
+        padding: 20px;
+    }
+
+    .article-metadata a{
+        
+        font-size: 40px;
+    }
+
+    .article-metadata a ,.place-name a{
+        color: white;
+        cursor: pointer;
+        transition: 0.8s;
+    }
+
+    .article-metadata a:hover ,.place-name a:hover{
+        text-decoration: underline;
+    }
+
+
+
+    .place-img {
+        grid-area: img;
+        width: 300px;
+        height: auto;
+    }
+
+    .place-name {
+        grid-area: name;
+    }
+
+    .place-name a , p{
+        color: white;
+    }
+
+    .btn {
+        grid-area: button;
+        border: 1px solid #ffffff linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background : rgb(255, 255, 255);
+        padding: 10px 20px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: .4s;
+        color: black; 
+    }
+
+    .btn:hover {
+        color:white;
+        border: 1px solid black linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background-color: black;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    }
+</style>
+
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{values.country}}</a>
+            <!-- <small class="text-muted">{{ values.date_posted }}</small> -->
+        </div>
+
+        <div class="place-name">
+            <h2><a class="article-title" href="#">{{values.name}}</a></h2>
+            <p class="article-content">Package : {{values.package}} with the rating {{values.rating}} </p>
+        </div>
+        
+        <img src="{%static values.image %}" height="60px" class="place-img">
+        
+        <a class="btn checkout-btn" href="/checkout/?destination_id={{ values.id }}">checkout</a>
+    </div>
+    
+    
+</article>
+{% endblock content %}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+{% extends "testApp1/base.html" %}
+{% load static%}
+{% block content %}
+
+<style>
+    .wrapper {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: 'heading heading heading heading'
+            'nested1 nested1 nested1 nested1'
+            'nested2 nested2 nested3 nested3'
+            'nested2 nested2 nested3 nested3'
+            'nested4 nested4 nested5 nested5'
+            'nested6 nested6 nested6 nested6'
+            'nested6 nested6 nested6 nested6'
+        ;
+    }
+
+    .wrapper div {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .wrapper div:nth-child(odd) {}
+
+    .title {
+        background-color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+        grid-area: heading;
+        text-align: center;
+    }
+
+    .title::before {
+        right: .5em;
+        margin-left: -50%;
+    }
+
+    .title::after {
+        left: .5em;
+        margin-right: -50%;
+    }
+
+    .title::before,
+    .title::after {
+        content: "";
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        width: 50%;
+        height: 1px;
+        background-color: #e1e1e1;
+    }
+
+    .nested1 {
+        background-color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+        color: white;
+        grid-area: nested1;
+        display: flex;
+        /* grid-column-gap: 15px;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: auto;
+grid-template-areas: 'image para para'; */
+    }
+
+    .nested1 img {
+        /* grid-area: image; */
+        width: 350px;
+    }
+
+    .nested1 .nested1-content {
+        text-align: justify;
+    }
+
+    .nested2 {
+        background-color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+        color: white;
+        grid-area: nested2;
+        display: block;
+    }
+
+    .nested2 img {
+        /* grid-area: image; */
+        width: 300px;
+    }
+
+    .nested3 {
+        background-color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+        color: white;
+        grid-area: nested3;
+        display: block;
+    }
+
+    .nested3 img {
+        /* grid-area: image; */
+        width: 300px;
+    }
+
+    .nested4 {
+        background-color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+        color: white;
+        grid-area: nested4;
+        display: block;
+    }
+
+    .nested4 img {
+        /* grid-area: image; */
+        width: 300px;
+    }
+
+    .nested5 {
+        background-color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+        color: white;
+        grid-area: nested5;
+        display: block;
+    }
+
+    .nested5 img {
+        /* grid-area: image; */
+        width: 300px;
+    }
+
+    .nested6 {
+        background-color: #fff;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+        color: white;
+        grid-area: nested6;
+        display: block;
+    }
+
+    .nested6 img {
+        /* grid-area: image; */
+        width: 700px;
+    }
+</style>
+
+<div class="wrapper">
+    <div class="title">
+        <h1>LATEST DEALS</h1>
+    </div>
+    <div class="nested1">
+        <img src="{%static 'testApp1/images/India-Delhi.jpg'%}">
+        <div class="nested1-content">
+            <p><b>India.</b> The ruins of an old city, markets, monuments, broken mansions, the zigzag
+                of the roads, the still sad times of music past. And rising up from it, her mother, wind
+                in her hair, laughing like a witch.</p>
+            <h3>Up to 25% Off Students Coupons</h3>
+            <i>
+                <h5>Use Code : <b>STUDENTS</b></h5>
+            </i>
+        </div>
+    </div>
+    <div class="nested2">
+        <div class="nested2-content">
+            <p><b>Maldives.</b> How beautiful it would be spending time on an island by holding hand's of
+                the person you love and walking on beach</p>
+            <h3>20% & up --All-Inclusive Weeklong Trip w/Air</h3>
+            <i>
+                <h5>Use Code : <b>COUPLE</b></h5>
+            </i>
+        </div>
+        <img src="{%static 'testApp1/images/Maldives-Malé.jpg'%}">
+    </div>
+    <div class="nested3">
+        <img src="{%static 'testApp1/images/Kuwait-Failaka Island.jpg'%}">
+        <div class="nested3-content">
+            <p><b>Kuwait.</b> Tan lines fade, memories last forever.</p>
+            <h3>5% Off All-Incl. Luxury Escape for 2</h3>
+            <i>
+                <h5>Use Code : <b>FUN</b></h5>
+            </i>
+        </div>
+    </div>
+    <div class="nested4">
+        <img src="{%static 'testApp1/images/Canada-Montreal.jpg'%}">
+        <div class="nested4-content">
+            <p><b>Canada.</b> Place of infinite promises.</p>
+            <h3>5% -- 14-Night Trip</h3>
+            <i>
+                <h5>Use Code : <b>FUN</b></h5>
+            </i>
+        </div>
+    </div>
+
+    <div class="nested5">
+        <img src="{%static 'testApp1/images/Zimbabwe-Victoria Falls.jpg'%}">
+        <div class="nested5-content">
+            <p><b>Zimbabwe.</b> Happiness comes in rushes.</p>
+            <h3>20% -- 14-Night Trip</h3>
+            <i>
+                <h5>Use Code : <b>COUPLE</b></h5>
+            </i>
+        </div>
+    </div>
+
+    <div class="nested6">
+        <img src="{%static 'testApp1/images/Saudi Arabia-Mecca.jpg'%}">
+        <div class="nested6-content">
+            <p><b>Saudi Arabia.</b> Darkness will vanish as soon you put <b>the Light of Quran</b> in
+                your heart.</p>
+            <h3>50% -- 14-Night Trip</h3>
+            <i>
+                <h5>Use Code : <b>RELIGIOUS</b></h5>
+            </i>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

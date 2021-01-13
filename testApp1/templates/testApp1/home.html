@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% extends "testApp1/base.html" %}
+{% load static%}
+{% block content %}
+
+<style>
+    .search-body{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        background: #ffffff;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        box-shadow: 0 0 20px 0 rgba(72, 92, 116, 0.7);
+        color: white;
+    }
+
+    .search-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-row-gap: 10px;
+
+    }
+
+    .content-section {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        background: #ffffff;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        box-shadow: 0 0 20px 0 rgba(72, 92, 116, 0.7);
+        border: none;
+
+    }
+
+    /* .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+
+    } */
+
+    .article-metadata {
+        font-size: 30px;
+        padding: 20px;
+    }
+
+    .article-metadata a, .article-title{
+        color: white;
+        cursor: pointer;
+        transition: 0.8s;
+    }
+
+    .article-metadata a:hover ,.article-title:hover{
+        text-decoration: underline;
+    }
+
+    .article-content{
+        color: white;
+    }
+
+    .destination-body{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 50px;
+        grid-row-gap: 20px;
+    }
+
+    .destination-image{
+        width: 300px;
+        height: auto;
+    }
+
+    .article-content{
+        font-size: 20PX;
+    }
+
+     .search-btn{
+        border: 1px solid #ffffff linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background : rgb(255, 255, 255);
+        padding: 10px 10px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: .4s;
+        color: black; 
+        size: 20px;
+    }
+
+    .search-btn:hover {
+        color:white;
+        border: 1px solid black linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background-color: black;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    }
+
+    
+</style>
+
+<div class="row">
+    <div class="col">
+        <div class="card card-body search-body">
+            <form method="get" class="search-form">
+                
+                {{myFilter.form}}
+                <button class="btn search-btn"  type="submit" style="margin-left: 220px;">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% for destination in destinations %}
+<article class="media content-section grid-container">
+    <div class="media-body ">
+        <div class="article-metadata">
+            <a class="mr-2" href="/portfolio/?destination_id={{ destination.id }}">{{destination.country}}</a>
+            <!-- <small class="text-muted">{{ destination.date_posted }}</small> -->
+        </div>
+        <div class="destination-body">
+            <div class="destination-body-content">
+               <h2><a class="article-title" href="/portfolio/?destination_id={{ destination.id }}">{{destination.name}}</a>
+                </h2>
+                <p class="article-content">Package : {{destination.package}} with the Rating {{destination.rating}} 
+                    </p> 
+            </div>
+            
+            <img src="{%static destination.image %}"  class="destination-image">
+        </div>
+        
+                        
+                        
+    </div>
+</article>
+{% endfor %}
+{% endblock content %}

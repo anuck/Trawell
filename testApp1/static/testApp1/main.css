@@ -1,0 +1,156 @@
+body {
+    background: #fafafa;
+    color: #333333;
+    margin-top: 5rem;
+  }
+
+  #bg{
+    background-image: url('images/background_img.jpg');/*{%static "testApp1/images/background_img.jpg"%}*/
+  }
+  
+ /* .web_logo{
+  width: 40px;
+  height: 40px;
+  /* object-fit: cover; 
+  background-image: url('images/logo.png');
+
+} */
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff; /*Changed the color to white so that 'You have been logged out' would be visible clearly*/
+  }
+  
+  ul {
+    margin: 0;
+  }
+  
+  .bg-steel {
+
+    background-color: #C7C7C7;/*#5f788a */
+     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    
+     font-weight: bold;
+     text-transform: uppercase;
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     height: 50px;
+     /* background-blend-mode: darken; */
+   }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  
+  .content-section {
+    background: #ffffff;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    color: #444444;
+     /* transition: .3 ease; */
+  }
+  
+  a.article-title:hover {
+    color: #428bca;
+    /* transform: scale(1); */
+    text-decoration: none;
+  }
+  
+  .article-content {
+    white-space: pre-line;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+  }
+  
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+  .article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+
+  /*DESTINATION GRID*/
+
+  /* .grid-container {
+    background-color: #428bca;
+  }
+
+  /* .grid-container {
+    display: grid;
+    display: inline;
+    grid-template-columns: auto auto;
+  } */ 
+  
+  .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .account-heading {
+    font-size: 2.5rem;
+  }
+  
+  .body_right{
+    background-color: #5F3F2B;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2) );
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* border:solid black; */
+    
+  }
+
+  .body_right h3 {
+    color: white;
+  }
+ 
+  .body_right p span{
+   color: white;
+ }
+
+
+ 
+ /*DEALS*/
+
+ /* .wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 'heading heading heading'
+                        'body body body';
+  
+}
+.wrapper div{
+  background-color: blue;
+  padding: 10px;
+  margin: 10px;
+}
+
+.wrapper div:nth-child(odd){
+  background-color: red;
+} */

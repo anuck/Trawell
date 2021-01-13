@@ -1,0 +1,72 @@
+{% extends "testApp1/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    .content-section{
+
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        color: white;
+        border: none;
+
+    }
+
+    .form-group li, small{
+        color: white !important;
+    }
+
+    /* .text-muted{
+        color: none;
+    } */
+
+    .sign-up{
+        border: 1px solid #ffffff linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background : rgb(255, 255, 255);
+        padding: 10px 10px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: .4s;
+        color: black; 
+        size: 20px;
+    }
+
+    .sign-up:hover{
+        
+        color:white;
+        border: 1px solid black linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+        background-color: black;
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) );
+    }
+
+    .text-muted p, .text-muted p a{
+        color:white;
+        font-size: 15px;
+    }
+
+    /* .text-muted p a{
+        text-decoration: none;
+    } */
+
+    .text-muted p a:hover{
+        cursor: pointer;
+    }
+
+</style>
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Join Today</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn sign-up" type="submit">Sign Up</button>
+        </div>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <p>Already have an account? <a class="ml-2" href="{% url 'login' %}">Sign In</a></p>
+        </small>
+    </div>
+</div>
+{% endblock content%}
